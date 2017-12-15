@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+  
+<suite name="EMRProject" verbose="1" >
+  <test name="sample test" >
+    <classes>
+       <class name="com.emr.testrunner.Testrunner" />
+    </classes>
+  </test>
+</suite>
