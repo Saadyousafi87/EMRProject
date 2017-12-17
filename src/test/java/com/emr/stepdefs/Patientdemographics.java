@@ -1,18 +1,32 @@
 package com.emr.stepdefs;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import com.emr.pageobjects.Openemrhomepage;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class Patientdemographics {
 	
+	WebDriver driver;
+	
 	@Given("^user login to the app with valid user name and password$")
 	public void user_login_to_the_app_with_valid_user_name_and_password() throws Throwable {
-	    
+	    System.setProperty("webdriver.chrome.driver","C:\\Program Files (x86)\\Google\\Chrome\\chromedriver.exe" );
+	    driver = new ChromeDriver();
+	    driver.get("http://demo.openemr.io/openemr");
+	    Openemrhomepage oh = new Openemrhomepage(driver);
+	    oh.Username().sendKeys("admin");
+	    oh.password().sendKeys("pass");
+	    oh.login().clear();
 	}
 
 	@When("^user click on patient button and click new/search link$")
 	public void user_click_on_patient_button_and_click_new_search_link() throws Throwable {
+		
 	  
 	}
 
