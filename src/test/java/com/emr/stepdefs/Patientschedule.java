@@ -1,5 +1,7 @@
 package com.emr.stepdefs;
 
+import java.util.Iterator;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -18,6 +20,7 @@ public class Patientschedule {
 	WebDriver driver;
 	Schedule s = new Schedule(driver);
 	
+	
 	@Given("^user login  the app with valid user name and password$")
 	public void user_login_the_app_with_valid_user_name_and_password() throws Throwable {
 		System.setProperty("webdriver.chrome.driver","C:\\Program Files (x86)\\Google\\Chrome\\chromedriver.exe" );
@@ -27,39 +30,50 @@ public class Patientschedule {
 	    oh.Username().sendKeys("admin");
 	    oh.password().sendKeys("pass");
 	    oh.login().click();
-	    driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS );
+	    
 	}
 	
 	@When("^user click on calender button$")
 	public void user_click_on_calender_button() throws Throwable {
 		Schedule s= new Schedule(driver);
 		Actions a = new Actions(driver);
-		//a.moveToElement(s.hoover_patient_client()).build().perform();
-		s.click_calander().click();
+	
 		
 	   
 	}
 
 	@When("^click on new appointment button$")
 	public void click_on_new_appointment_button() throws Throwable {
-	s.newappointment().click();
+		Schedule s = new Schedule(driver);
+		
+		
+		driver.switchTo().frame(driver.findElement(By.cssSelector("iframe[name='cal']")));
+		driver.switchTo().frame(driver.findElement(By.cssSelector("frame[name='Calendar']")));
+		s.newappointment().click();
+		//driver.switchTo().parentFrame();
+		//driver.switchTo().defaultContent();
+		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	
 	    
 	}
 
 	@When("^enter category, date, time, title, patient, provider, room number, comments and click save$")
 	public void enter_category_date_time_title_patient_provider_room_number_comments_and_click_save() throws Throwable {
-		// new window appears for appointment
+		Thread.sleep(5000);
+		Set<String> ids=driver.getWindowHandles();
+		Iterator<String> it=ids.iterator();
+		String parent = it.next();
+		String child = it.next();
+		String subchild = it.next();
+		driver.switchTo().window(child);
+		Schedule s = new Schedule(driver);
+		s.category().sendKeys("New Patient");
 		
-		s.category().sendKeys("Office Visit");
-		s.date().sendKeys("2017-12-28");
-		s.titleform().sendKeys("Office Visit");
-		s.selectpatient().click();
-		//new patient id window opens
-		s.Select_patient_by().sendKeys("ID");
-		s.Enter_patient_id().sendKeys("1");
-		s.click_search().click();
+
 		
+		
+		
+
 		
 	    
 	}

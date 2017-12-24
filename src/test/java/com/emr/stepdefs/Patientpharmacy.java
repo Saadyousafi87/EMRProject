@@ -1,7 +1,12 @@
 package com.emr.stepdefs;
 
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 
 import com.emr.pageobjects.Openemrhomepage;
 
@@ -26,17 +31,39 @@ public class Patientpharmacy {
 
 	@When("^user click on addministration button$")
 	public void user_click_on_addministration_button() throws Throwable {
+		Actions a = new Actions(driver);
+		a.moveToElement(driver.findElement(By.xpath("//div[@class='appMenu']/span[8]/div/div"))).build().perform();
+		driver.findElement(By.xpath("//*[@id=\"menu logo\"]/div/div/span[8]/div/ul/li[5]/div")).click();
+		driver.switchTo().frame(driver.findElement(By.name("adm")));
+		driver.findElement(By.xpath("/html/body/div[2]/div[3]/div/a")).click();
+		
+		
+		
+		
 		
 	    
 	}
 
 	@When("^enter name, address, city, state, zip, email, phone$")
 	public void enter_name_address_city_state_zip_email_phone() throws Throwable {
+	//	driver.findElement(By.name("name")).sendKeys("Wallgreens");
+	//	driver.findElement(By.name("address_line1")).sendKeys("6 mclean ave ");
+	//	driver.findElement(By.name("city")).sendKeys("yonkers");
+	//	driver.findElement(By.name("state")).sendKeys("ny");
+	//	driver.findElement(By.name("zip")).sendKeys("10705");
+	//	driver.findElement(By.name("email")).sendKeys("lababidi@alchiki.com");
+	//	driver.findElement(By.name("phone")).sendKeys("090078601");
+	//	Select s = new Select(driver.findElement(By.name("transmit_method")));
+	//	s.deselectByValue("2");
+		
+		
 	    
 	}
 
 	@When("^click save button$")
 	public void click_save_button() throws Throwable {
+	//	driver.findElement(By.xpath("/html/body/div[2]/div[3]/div/form/table/tbody/tr[10]/td/a[1]/span")).click();
+		
 	    
 	}
 

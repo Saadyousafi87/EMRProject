@@ -25,5 +25,11 @@ public class Patient_visit {
 		return selectpatientphil;
 	}
 	
+	@FindBy(css="td[class='sorting_1']")
+	WebElement Patientphil;
+	public WebElement Patient_Phil() {
+		return Patientphil;
+	}
+	
 
 }

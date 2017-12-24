@@ -20,19 +20,19 @@ public class Schedule {
 	}
 	
 	
-	@FindBy(xpath="//*[@id=\"menu logo\"]/div/div/span[1]/div")
+	@FindBy(xpath=".//*[@id='menu logo']/div/div/span[1]/*/div")
 	WebElement class_calander;
 	public WebElement click_calander() {
 		return class_calander;
 	}
 	
-	@FindBy(xpath="//a[contains(@title,'New Appointment')]")
+	@FindBy(css="a[title='New Appointment']")
 	WebElement new_appointment;
 	public WebElement newappointment() {
 		return new_appointment;
 	}
 	
-	@FindBy(name="form_category")
+	@FindBy(css="select[name='form_category']")
 	WebElement select_category;
 	public WebElement category() {
 		return select_category;
