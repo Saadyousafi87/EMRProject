@@ -63,11 +63,13 @@ public class Remindermessage {
 		driver.findElement(By.name("form_patient")).click();
 		
 		Set<String>Ids = driver.getWindowHandles();
-		Iterator<String> it=Ids.iterator();
+		Iterator<String>it=Ids.iterator();
 		String parentid = it.next();
 		String childid = it.next();
 		driver.switchTo().window(childid);
-		System.out.println(driver.getTitle());
+		driver.findElement(By.id("searchparm")).sendKeys("Phil");
+		
+		
 		
 		
 	    

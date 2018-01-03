@@ -1,9 +1,11 @@
 package com.emr.stepdefs;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
@@ -29,6 +31,7 @@ public class Patientvisit {
 	    oh.Username().sendKeys("admin");
 	    oh.password().sendKeys("pass");
 	    oh.login().click();
+	    
 		
 	}
 
@@ -56,8 +59,12 @@ public class Patientvisit {
 
 	@When("^enter consultation brief description, visit category, facility, billing facility, sensitivity and date of service$")
 	public void enter_consultation_brief_description_visit_category_facility_billing_facility_sensitivity_and_date_of_service() throws Throwable {
-		driver.switchTo().frame(driver.findElement(By.xpath("//*[@id=\"framesDisplay\"]/div/iframe")));
-		Select s = new Select(driver.findElement(By.xpath("")));
+		driver.switchTo().frame(driver.findElement(By.name("enc")));
+		driver.findElement(By.cssSelector("textarea[name='reason']")).sendKeys("this is a test");
+		Select s = new Select(driver.findElement(By.cssSelector("select[name='pc_catid']")));
+		s.selectByVisibleText("Office Visit");
+		Select t = new Select (driver.findElement(By.cssSelector("select[name='form_sensitivity']")));
+		t.selectByValue("high");
 		
 		
 	}
