@@ -14,7 +14,6 @@ import cucumber.api.java.en.When;
 
 public class Patientpharmacy {
 	WebDriver driver;
-	Addpharmacy ap = new Addpharmacy(driver);
 	
 	@Given("^user visit app and login with valid username and password\\.$")
 	public void user_visit_app_and_login_with_valid_username_and_password() throws Throwable {
@@ -30,6 +29,7 @@ public class Patientpharmacy {
 
 	@When("^user click on addministration button$")
 	public void user_click_on_addministration_button() throws Throwable {
+		Addpharmacy ap = new Addpharmacy(driver);
 		Actions a = new Actions(driver);
 		//a.moveToElement(ap.addministration_button()).build().perform();
 		//ap.Practice_button().click();
@@ -49,6 +49,7 @@ public class Patientpharmacy {
 
 	@When("^enter name, address, city, state, zip, email, phone$")
 	public void enter_name_address_city_state_zip_email_phone() throws Throwable {
+		Addpharmacy ap = new Addpharmacy(driver);
 		//ap.Pharmacy_name().sendKeys("Wallgreens");
 		//ap.pharmacy_address().sendKeys("6666 String Street");
 		//ap.pharmacy_city().sendKeys("Longview");
@@ -72,6 +73,7 @@ public class Patientpharmacy {
 
 	@When("^click save button$")
 	public void click_save_button() throws Throwable {
+		Addpharmacy ap = new Addpharmacy(driver);
 		//ap.submit_button().click();
 		driver.findElement(By.xpath("/html/body/div[2]/div[3]/div/form/table/tbody/tr[10]/td/a[1]")).click();
 	

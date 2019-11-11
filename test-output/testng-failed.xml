@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="-1" guice-stage="DEVELOPMENT" name="Failed suite [EMRProject]">
+  <test name="sample test(failed)">
+    <classes>
+      <class name="com.emr.testrunner.Testrunner">
+        <methods>
+          <include name="setUpClass"/>
+          <include name="feature" invocation-numbers="0"/>
+          <include name="tearDownClass"/>
+        </methods>
+      </class> <!-- com.emr.testrunner.Testrunner -->
+    </classes>
+  </test> <!-- sample test(failed) -->
+</suite> <!-- Failed suite [EMRProject] -->
