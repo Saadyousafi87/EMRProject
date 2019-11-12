@@ -18,7 +18,7 @@ import cucumber.api.java.en.When;
 
 public class Remindermessage {
 	WebDriver driver;
-	Messagereminder m = new Messagereminder(driver);
+	
 	
 	@Given("^user login to  app with valid user name and password\\.$")
 	public void user_login_to_app_with_valid_user_name_and_password() throws Throwable {
@@ -44,7 +44,7 @@ public class Remindermessage {
 
 	@When("^click on message button and click on add new link$")
 	public void click_on_message_button_and_click_on_add_new_link() throws Throwable {
-		driver.findElement(By.xpath("//div[text()='Messages ']")).click();
+		driver.findElement(By.xpath("//div[contains(@class,'menuLabel')and text()='Messages ']")).click();
 		//driver.switchTo().frame(driver.findElement(By.xpath("iframe[name='fin']")));
 		driver.switchTo().frame(driver.findElement(By.cssSelector("iframe[name='msg']")));
 		driver.findElement(By.xpath("//a[text()='Add New']")).click();
@@ -60,19 +60,9 @@ public class Remindermessage {
 		Select c = new Select(driver.findElement(By.name("users")));
 		c.selectByIndex(3);
 		driver.findElement(By.name("note")).sendKeys("this is a test");
-		driver.findElement(By.name("form_patient")).click();
-		
-		Set<String>Ids = driver.getWindowHandles();
-		Iterator<String>it=Ids.iterator();
-		String parentid = it.next();
-		String childid = it.next();
-		driver.switchTo().window(childid);
-		driver.findElement(By.id("searchparm")).sendKeys("Phil");
 		
 		
-		
-		
-	    
+		 
 	}
 
 	@Then("^user receive confirmation message then close the browser$")

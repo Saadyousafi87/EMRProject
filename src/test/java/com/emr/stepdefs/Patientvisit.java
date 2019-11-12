@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,7 +20,7 @@ import cucumber.api.java.en.When;
 
 public class Patientvisit {
 	WebDriver driver;
-	Patient_visit pv = new Patient_visit(driver);
+	
 	
 	@Given("^user login to app with valid user name and password$")
 	public void user_login_to_app_with_valid_user_name_and_password() throws Throwable {
@@ -27,6 +28,7 @@ public class Patientvisit {
 	    driver = new ChromeDriver();
 	    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	    driver.get("http://demo.openemr.io/openemr/interface/login/login.php?site=default");
+	    Patient_visit pv = new Patient_visit(driver);
 	    Openemrhomepage oh=new Openemrhomepage(driver);
 	    oh.Username().sendKeys("admin");
 	    oh.password().sendKeys("pass");
@@ -54,23 +56,39 @@ public class Patientvisit {
 		a.moveToElement(driver.findElement(By.xpath("//*[@id=\"menu logo\"]/div/div/span[4]/div/div"))).build().perform();
 		a.moveToElement(driver.findElement(By.xpath("//*[@id=\"menu logo\"]/div/div/span[4]/div/ul/li[4]/div/div"))).build().perform();
 		driver.findElement(By.xpath("//*[@id=\"menu logo\"]/div/div/span[4]/div/ul/li[4]/div/ul/li[1]/div")).click();
-		driver.switchTo().alert().accept();
+		//driver.switchTo().alert().accept();
 	}
 
 	@When("^enter consultation brief description, visit category, facility, billing facility, sensitivity and date of service$")
 	public void enter_consultation_brief_description_visit_category_facility_billing_facility_sensitivity_and_date_of_service() throws Throwable {
 		driver.switchTo().frame(driver.findElement(By.name("enc")));
-		driver.findElement(By.cssSelector("textarea[name='reason']")).sendKeys("this is a test");
+		driver.findElement(By.name("reason")).sendKeys("this is a test");
 		Select s = new Select(driver.findElement(By.cssSelector("select[name='pc_catid']")));
 		s.selectByVisibleText("Office Visit");
 		Select t = new Select (driver.findElement(By.cssSelector("select[name='form_sensitivity']")));
 		t.selectByValue("high");
+		driver.findElement(By.id("img_form_date")).click();
+		
+		while(!driver.findElement(By.xpath("/html/body/div[6]/table/thead/tr[1]/td[2]")).getText().contains("March, 2018")) {
+			driver.findElement(By.xpath("/html/body/div[6]/table/thead/tr[2]/td[4]/div")).click();
+		}
+		List<WebElement> dates = driver.findElements(By.className("day"));
+		int count = driver.findElements(By.className("day")).size();
+		
+		for(int i=0; i<count; i++) {
+			String text = driver.findElements(By.className("day")).get(i).getText();
+			if(text.equalsIgnoreCase("12")) {
+				driver.findElements(By.className("day")).get(i).click();
+			}
+		}
+		
 		
 		
 	}
 
 	@When("^click on issue button and enter type, title, reffered by, out comes, click save button and click save button again$")
 	public void click_on_issue_button_and_enter_type_title_reffered_by_out_comes_click_save_button_and_click_save_button_again() throws Throwable {
+		driver.findElement(By.xpath("//a[@class='css_button link_submit']")).click();
 	    
 	}
 
